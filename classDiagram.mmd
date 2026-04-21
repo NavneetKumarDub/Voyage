@@ -1,0 +1,143 @@
+classDiagram
+    class AuthContext {
+        +User user
+        +Profile profile
+        +boolean ready
+        +boolean isAuthed
+        +boolean isGuest
+        +signIn() Promise
+        +signOut() Promise
+        +continueAsGuest() void
+        +updateProfile(patch) Promise
+    }
+
+    class VoyageContext {
+        +Itinerary itinerary
+        +boolean loading
+        +Persona persona
+        +Coords userCoords
+        +Journey activeJourney
+        +List~Companion~ companions
+        +List~SavedEntry~ allSaved
+        +handleMood(mood) Promise
+        +handleRefine(request) Promise
+        +startJourneyNow(ids) Promise
+        +visitStop(order) Promise
+        +saveToGallery() Promise
+    }
+
+    class Profile {
+        +string uid
+        +string name
+        +string email
+        +string photo
+        +string ageGroup
+        +string diet
+        +string allergies
+        +string travelStyle
+        +string activity
+        +string transport
+        +string climate
+        +string accessibility
+        +List~string~ interests
+        +List~string~ languages
+        +string about
+    }
+
+    class Companion {
+        +string id
+        +string name
+        +string relation
+        +string ageGroup
+        +string diet
+        +string interests
+        +string notes
+    }
+
+    class Itinerary {
+        +string mood
+        +string city
+        +string country
+        +string tagline
+        +string genre
+        +Summary summary
+        +List~Stop~ stops
+        +List~Transition~ transitions
+        +Essentials essentials
+        +Style style
+        +Persona persona
+        +Coords userCoords
+        +string source
+    }
+
+    class Stop {
+        +int order
+        +string type
+        +string time
+        +string clock
+        +int durationMinutes
+        +string title
+        +string place
+        +string address
+        +float[2] coords
+        +string caption
+        +string dialogue
+        +string sfx
+        +string emoji
+        +string tip
+        +string costRange
+        +string openingHours
+        +string bookingURL
+        +string photoQuery
+    }
+
+    class Transition {
+        +int from
+        +int to
+        +string mode
+        +int minutes
+        +float distanceKm
+        +string note
+    }
+
+    class Journey {
+        +string id
+        +Itinerary itinerary
+        +string status
+        +Timestamp startedAt
+        +Map~int,Timestamp~ visitedStops
+        +List~Companion~ withCompanions
+    }
+
+    class Persona {
+        +string who
+        +string budget
+        +string pace
+    }
+
+    class Summary {
+        +string totalCostRange
+        +float walkingDistanceKm
+        +int totalDurationHours
+        +string currencySymbol
+        +string weatherHint
+    }
+
+    class Essentials {
+        +List~string~ packingList
+        +List~Phrase~ localPhrases
+        +Emergency emergency
+    }
+
+    AuthContext --> Profile
+    VoyageContext --> Itinerary
+    VoyageContext --> Persona
+    VoyageContext --> Journey
+    VoyageContext --> Companion
+    Profile --> Companion
+    Itinerary --> Stop
+    Itinerary --> Transition
+    Itinerary --> Summary
+    Itinerary --> Essentials
+    Itinerary --> Persona
+    Journey --> Itinerary

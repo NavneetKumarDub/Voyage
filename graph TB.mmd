@@ -1,0 +1,43 @@
+graph TB
+    subgraph Browser["🌐 Browser — React SPA"]
+        direction TB
+        Router[React Router]
+        Pages[Pages<br/>Home · Comic · Reader · Editor<br/>Gallery · Journeys · Trip · Photos<br/>Profile · About · Welcome]
+        Contexts[AuthContext + VoyageContext]
+        Components[Shared Components<br/>NavBar · MoodInput · ComicGrid<br/>MapView · JourneyTracker · ShareBar]
+        Services[Service Layer]
+        Hooks[Hooks<br/>useLocalStorage]
+        Router --> Pages
+        Pages --> Contexts
+        Pages --> Components
+        Contexts --> Services
+        Components --> Services
+        Contexts --> Hooks
+    end
+
+    subgraph External["☁️ External Services"]
+        Groq[Groq API<br/>Llama 3.3 70B]
+        Pollinations[Pollinations.ai<br/>AI images]
+        OpenMeteo[Open-Meteo<br/>weather forecast]
+        Nominatim[Nominatim<br/>geocoding]
+        OSM[OpenStreetMap<br/>map tiles]
+        Firebase[(Firebase<br/>Auth + Firestore)]
+    end
+
+    subgraph BrowserAPIs["🖥️ Browser APIs"]
+        Speech[Web Speech API]
+        Geo[Geolocation API]
+        Storage[localStorage]
+        Fullscreen[Fullscreen API]
+    end
+
+    Services --> Groq
+    Services --> Pollinations
+    Services --> OpenMeteo
+    Services --> Nominatim
+    Components --> OSM
+    Services --> Firebase
+    Services --> Speech
+    Services --> Geo
+    Hooks --> Storage
+    Components --> Fullscreen

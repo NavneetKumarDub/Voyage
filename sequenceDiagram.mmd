@@ -1,0 +1,33 @@
+sequenceDiagram
+    actor User
+    participant Home as HomePage
+    participant Ctx as VoyageContext
+    participant Groq as groqAPI
+    participant Weather as weatherAPI
+    participant Util as planUtils
+    participant FB as Firestore
+    participant Img as imageAPI
+    participant Comic as ComicPage
+
+    User->>Home: type "melancholic" + ROLL!
+    Home->>Ctx: handleMood("melancholic")
+    Ctx->>Ctx: setLoading(true)
+    par AI generation
+        Ctx->>Groq: generateItinerary(mood, city, persona, coords, profile, companions)
+        Groq->>Groq: build structured prompt
+        Groq-->>Ctx: JSON itinerary (6 stops)
+        Ctx->>Util: reorderStopsFromUser(data, coords)
+        Util-->>Ctx: stops sorted by distance
+    and Weather fetch
+        Ctx->>Weather: fetchWeatherForCity(city)
+        Weather->>Weather: geocode + hourly forecast
+        Weather-->>Ctx: { hour → {icon, temp} }
+    end
+    Ctx->>Ctx: setItinerary(enriched)
+    Ctx->>FB: push to history + persist locally
+    Ctx->>Comic: navigate("/comic")
+
+    Comic->>Ctx: read itinerary + images
+    Ctx->>Img: getComicImageURL(stop, data) × 6
+    Img-->>Comic: 6 Pollinations.ai URLs (lazy loaded)
+    Comic->>User: render comic panels + map + weather + share bar

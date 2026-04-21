@@ -1,0 +1,29 @@
+graph LR
+    Welcome["/welcome<br/>Sign in / Guest"]
+    Home["/<br/>Home — profile, CTA, journeys"]
+    Comic["/comic<br/>The generated plan"]
+    Reader["/read<br/>Cinematic panel reader"]
+    Editor["/edit<br/>Drag-drop editor"]
+    Journeys["/journeys<br/>Journey history"]
+    Gallery["/gallery<br/>Saved comics"]
+    Photos["/photos<br/>Trip photo album"]
+    Trip["/trip<br/>Multi-day planner"]
+    Profile["/profile<br/>User + companions"]
+    About["/about<br/>Tech + features"]
+
+    Welcome -->|Google Sign-in| Home
+    Welcome -->|Continue as Guest| Home
+    Home -->|Roll a mood| Comic
+    Home -->|Open saved| Comic
+    Home -->|Open journey| Comic
+    Comic -->|Reader mode| Reader
+    Comic -->|Edit plan| Editor
+    Comic -->|Start Journey| Comic
+    Editor -->|Save| Comic
+    Reader -->|ESC / Back| Comic
+    Home --> Trip
+    Home --> Profile
+    Home --> Photos
+    Home --> Gallery
+    Home --> Journeys
+    Home --> About
