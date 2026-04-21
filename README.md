@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # VOYAGE — Roll. Commit. Ship.
 
 > A mood-based 1-day travel planner that renders your day as a **comic book**. Speak a mood → get a 6-stop itinerary with AI-generated panels, real maps, weather forecasts, companions, voice narration, and cloud-synced journey tracking.
@@ -572,3 +573,7 @@ src/
 ## 📝 License
 
 Built for a 3-hour hackathon. Roll. Commit. Ship.
+=======
+# Voyage
+An web Application where you could just say your mood and it plan one day travel plan for you which is full customized with all features
+>>>>>>> 11fc0c850f78449b7b44513a8d84f790ffeccafc
