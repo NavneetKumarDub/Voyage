@@ -4,7 +4,11 @@
 > A mood-based 1-day travel planner that renders your day as a **comic book**. Speak a mood → get a 6-stop itinerary with AI-generated panels, real maps, weather forecasts, companions, voice narration, and cloud-synced journey tracking.
 
 ---
+# Voyage
 
+Live Demo: https://voyage-sable.vercel.app
+
+A mood-based 1-day travel planner rendered as a comic book.
 ## 🚀 Quick Start
 
 ```bash
